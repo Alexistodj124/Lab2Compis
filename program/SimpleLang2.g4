@@ -4,7 +4,7 @@ prog: stat+ ;
 
 stat: expr NEWLINE ;
 
-expr: expr op=('*'|'/'|'%'|'^') expr       # MulDiv
+expr: expr op=('*'|'/'|'%'|'^') expr       # ArithOp
     | expr op=('+'|'-') expr       # AddSub
     | INT                          # Int
     | FLOAT                        # Float

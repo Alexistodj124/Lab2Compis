@@ -99,6 +99,12 @@ class SimpleLangParser ( Parser ):
             if hasattr( listener, "exitProg" ):
                 listener.exitProg(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitProg" ):
+                return visitor.visitProg(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -155,6 +161,12 @@ class SimpleLangParser ( Parser ):
             if hasattr( listener, "exitStat" ):
                 listener.exitStat(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitStat" ):
+                return visitor.visitStat(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -210,6 +222,12 @@ class SimpleLangParser ( Parser ):
             if hasattr( listener, "exitFloat" ):
                 listener.exitFloat(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFloat" ):
+                return visitor.visitFloat(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class BoolContext(ExprContext):
 
@@ -227,6 +245,12 @@ class SimpleLangParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitBool" ):
                 listener.exitBool(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBool" ):
+                return visitor.visitBool(self)
+            else:
+                return visitor.visitChildren(self)
 
 
     class MulDivContext(ExprContext):
@@ -251,6 +275,12 @@ class SimpleLangParser ( Parser ):
             if hasattr( listener, "exitMulDiv" ):
                 listener.exitMulDiv(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMulDiv" ):
+                return visitor.visitMulDiv(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class AddSubContext(ExprContext):
 
@@ -274,6 +304,12 @@ class SimpleLangParser ( Parser ):
             if hasattr( listener, "exitAddSub" ):
                 listener.exitAddSub(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAddSub" ):
+                return visitor.visitAddSub(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class ParensContext(ExprContext):
 
@@ -293,6 +329,12 @@ class SimpleLangParser ( Parser ):
             if hasattr( listener, "exitParens" ):
                 listener.exitParens(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParens" ):
+                return visitor.visitParens(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class StringContext(ExprContext):
 
@@ -311,6 +353,12 @@ class SimpleLangParser ( Parser ):
             if hasattr( listener, "exitString" ):
                 listener.exitString(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitString" ):
+                return visitor.visitString(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class IntContext(ExprContext):
 
@@ -328,6 +376,12 @@ class SimpleLangParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitInt" ):
                 listener.exitInt(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitInt" ):
+                return visitor.visitInt(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 

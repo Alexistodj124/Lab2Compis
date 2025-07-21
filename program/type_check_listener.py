@@ -51,18 +51,16 @@ class TypeCheckListener(SimpleLangListener):
       return True
     return False
   
-  # def exitArithOp(self, ctx: SimpleLangParser.ArithOpContext):
-  # left_type = self.types[ctx.expr(0)]
-  # right_type = self.types[ctx.expr(1)]
-  # op = ctx.op.text
+  def exitMulDiv(self, ctx: SimpleLangParser.MulDivContext):
+    left_type = self.types[ctx.expr(0)]
+    right_type = self.types[ctx.expr(1)]
+    op = ctx.op.text
 
-  # if op in ['%', '^', '*', '/']:
-  #   if not isinstance(left_type, (IntType, FloatType)) or not isinstance(right_type, (IntType, FloatType)):
-  #     self.errors.append(f"Error: operador '{op}' no soportado entre {left_type} y {right_type}")
+    if op in ['%', '^', '*', '/']:
+        if not isinstance(left_type, (IntType, FloatType)) or not isinstance(right_type, (IntType, FloatType)):
+            self.errors.append(f"Error: operador '{op}' no soportado entre {left_type} y {right_type}")
+        if op in ['/', '%'] and (isinstance(left_type, BoolType) or isinstance(right_type, BoolType)):
+            self.errors.append(f"Error: no se puede aplicar '{op}' con booleanos")
 
-  # if op in ['/', '%']:
-  #   if isinstance(left_type, BoolType) or isinstance(right_type, BoolType):
-  #     self.errors.append(f"Error: no se puede aplicar '{op}' con booleanos")
-
-  # self.types[ctx] = FloatType() if isinstance(left_type, FloatType) or isinstance(right_type, FloatType) else IntType()
+    self.types[ctx] = FloatType() if isinstance(left_type, FloatType) or isinstance(right_type, FloatType) else IntType()
 
